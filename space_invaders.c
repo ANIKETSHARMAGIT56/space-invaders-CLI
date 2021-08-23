@@ -3,37 +3,6 @@
 #include<stdlib.h>
 #include<time.h>
 #include<windows.h>
-
-// clean the terminal
-    void clea()
-    {
-    HANDLE                     hStdOut;
-    CONSOLE_SCREEN_BUFFER_INFO csbi;
-    DWORD                      count;
-    DWORD                      cellCount;
-    COORD                      homeCoords = { 0, 0 };
-
-    hStdOut = GetStdHandle( STD_OUTPUT_HANDLE );
-    if (hStdOut == INVALID_HANDLE_VALUE) return;
-    if (!GetConsoleScreenBufferInfo( hStdOut, &csbi )) return;
-    cellCount = csbi.dwSize.X *csbi.dwSize.Y;
-    if (!FillConsoleOutputCharacter(
-    hStdOut,
-    (TCHAR) ' ',
-    cellCount,
-    homeCoords,
-    &count
-    )) return;
-    if (!FillConsoleOutputAttribute(
-    hStdOut,
-    csbi.wAttributes,
-    cellCount,
-    homeCoords,
-    &count
-    )) return;
-    SetConsoleCursorPosition( hStdOut, homeCoords );
-    }
-// clean the terminal
 // random number generator
     int gen(){
         srand(time(0));
@@ -166,8 +135,8 @@ while (always==0)
 // bottom line where spaceship is
     i=0;
     m=0;
-    Sleep(70);
-    clea();
+    Sleep(1);
+    system("cls");
     }
     return 0;
 }
